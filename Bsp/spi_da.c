@@ -57,7 +57,7 @@ void AD5754_Write(u8 *ptrTx, u8 *ptrRx)
 
   for (j = 0; j < 3; j++)
   {
-    data = *ptrTx++;
+    data = *ptrTx ;
     for (i = 0; i < 8; i++)
     {
       if ( data & 0x80 == 0)
@@ -66,15 +66,20 @@ void AD5754_Write(u8 *ptrTx, u8 *ptrRx)
         SDIN_H ;
       delay() ;
       SCLK_L;
+
       delay() ;
+
       if ( SDO == 0)
         *ptrRx &= 0xFE ;
       else
         *ptrRx |= 0x01 ;
+
+      data <<= 1 ;
       *ptrRx <<= 1 ;
       SCLK_H;
     }
     ptrRx++ ;
+    ptrTx++ ;
   }
   delay() ;
 
