@@ -35,21 +35,6 @@ int main(void)
 	IWDG_Configuration();
 	LED1_OFF;
 
-	DATx[0] = 0x0C; //设置量程
-	DATx[1] = 0x00;
-	DATx[2] = 0x00;
-	AD5754_Write(DATx, DARx);
-
-	DATx[0] = 0x10; //打开电源
-	DATx[1] = 0x00;
-	DATx[2] = 0x0F;
-	AD5754_Write(DATx, DARx);
-
-	DATx[0] = 0x04; //初始化
-	DATx[1] = 0x00;
-	DATx[2] = 0x00;
-	AD5754_Write(DATx, DARx);
-
 	while (1)
 	{
 		Modbus_task();
