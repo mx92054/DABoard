@@ -18,8 +18,6 @@ extern short wReg[];
   */
 void LED_GPIO_Config(void)
 {
-	int n;
-
 	GPIO_InitTypeDef GPIO_InitStructure;
 
 	RCC_APB2PeriphClockCmd(LED1_GPIO_CLK | DO_GPIO_CLK | DI_GPIO_CLK, ENABLE);
@@ -36,19 +34,10 @@ void LED_GPIO_Config(void)
 	GPIO_Init(LED1_GPIO_PORT, &GPIO_InitStructure);
 
 	//--------------Digital Output-------------------------------
-	GPIO_InitStructure.GPIO_Pin = DO_GPIO_PINS;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(DO_GPIO_PORT, &GPIO_InitStructure);
 
-	for (n = 0; n < 6; n++)
-		GPIO_ResetBits(DO_GPIO_PORT, GPIO_Pin_7 >> n);
 
 	//--------------Digital Input_-------------------------------
-	GPIO_InitStructure.GPIO_Pin = DI_GPIO_PINS;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_Init(DI_GPIO_PORT, &GPIO_InitStructure);
+
 }
 
 /**
@@ -143,3 +132,4 @@ void IWDG_Feed(void)
 }
 
 /*********************************************END OF FILE**********************/
+

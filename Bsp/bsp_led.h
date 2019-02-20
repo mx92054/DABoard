@@ -7,7 +7,7 @@
 // R-红色
 #define LED1_GPIO_PORT GPIOA			   /* GPIO端口 */
 #define LED1_GPIO_CLK RCC_APB2Periph_GPIOA /* GPIO端口时钟 */
-#define LED1_GPIO_PIN GPIO_Pin_1		   /* 连接到SCL时钟线的GPIO */
+#define LED1_GPIO_PIN GPIO_Pin_4		   /* 连接到SCL时钟线的GPIO */
 
 #define DO_GPIO_PORT GPIOB
 #define DO_GPIO_CLK RCC_APB2Periph_GPIOB
