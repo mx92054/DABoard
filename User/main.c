@@ -30,7 +30,7 @@ int main(void)
 	SetTimer(3, 200);  //DA口定时刷新进程
 
 	AD5754_init();
-	
+
 	IWDG_Configuration();
 	LED1_OFF;
 
@@ -57,7 +57,8 @@ int main(void)
 			DATx[1] = (wReg[DA_REG_ADR + nChn] & 0xFF00) >> 8;
 			DATx[2] = wReg[DA_REG_ADR + nChn] & 0x00FF;
 			AD5754_Write(DATx, DARx);
-			nChn = (nChn + 1) % 4 ;
+			WriteToAD5754RViaSpi(0x00, nChn, wReg[DA_REG_ADR + nChn]);
+			nChn = (nChn + 1) % 4;
 		}
 	}
 }
