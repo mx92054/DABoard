@@ -127,12 +127,16 @@ void delay(int length)
 }
 
 /********************************************************************************
-Function that writes to the AD5754R via the SPI port.
-********************************************************************************/
+ *	@brief	写命令到AD5754
+ *	@param	nCmd: 命令号
+ *          nChn:通道号
+ *          uVal：需要写入的值
+ *	@retval	None
+ ********************************************************************************/
 void WriteToAD5754RViaSpi(u8 uCmd, u8 uChn, u16 uVal)
 {
 
-  int ValueToWrite;
+  uint32_t ValueToWrite;
   int i;
 
   ValueToWrite = (uCmd & 0x07) << 3;
