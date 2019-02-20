@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\BH-F103.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BH-F103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 20 21:04:57 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 20 21:27:41 2019
 <BR><P>
 <H3>Maximum Stack Usage =        220 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -316,25 +316,24 @@ Global Symbols
 
 <P><STRONG><a name="[96]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[50]"></a>AD5754_Write</STRONG> (Thumb, 216 bytes, Stack size 16 bytes, spi_da.o(i.AD5754_Write))
+<P><STRONG><a name="[50]"></a>AD5754_Write</STRONG> (Thumb, 218 bytes, Stack size 16 bytes, spi_da.o(i.AD5754_Write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = AD5754_Write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[55]"></a>AD5754_init</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, spi_da.o(i.AD5754_init))
+<P><STRONG><a name="[54]"></a>AD5754_init</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, spi_da.o(i.AD5754_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = AD5754_init &rArr; AD5754_GPIO_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayus
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayus
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_GPIO_Init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
 </UL>
@@ -453,17 +452,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_GPIO_Config
 </UL>
 
-<P><STRONG><a name="[54]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
+<P><STRONG><a name="[53]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
 <BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
 </UL>
 
 <P><STRONG><a name="[51]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
 </UL>
 
 <P><STRONG><a name="[52]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
 </UL>
 
@@ -716,7 +715,7 @@ Global Symbols
 
 <P><STRONG><a name="[9a]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 224 bytes, Stack size 16 bytes, main.o(i.main))
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 216 bytes, Stack size 16 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 220<LI>Call Chain = main &rArr; Modbus_init &rArr; MODBUS_Config &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
@@ -729,7 +728,7 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Feed
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Configuration
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTimer
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -809,16 +808,15 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 </UL>
 
-<P><STRONG><a name="[53]"></a>delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, spi_da.o(i.delay))
-<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_Write
+<P><STRONG><a name="[56]"></a>delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, spi_da.o(i.delay))
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 </UL>
 
-<P><STRONG><a name="[56]"></a>delayus</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, spi_da.o(i.delayus))
-<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
+<P><STRONG><a name="[55]"></a>delayus</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, spi_da.o(i.delayus))
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD5754_init
 </UL>
 
 <P><STRONG><a name="[86]"></a>_printf_core</STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)

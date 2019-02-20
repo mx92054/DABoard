@@ -27,8 +27,7 @@ int main(void)
 
 	SetTimer(1, 500);  //喂狗服务程序定时器
 	SetTimer(2, 1000); //参数定时保存进程
-	SetTimer(3, 100);  //DA口定时刷新进程
-	SetTimer(4, 100);
+	SetTimer(3, 200);  //DA口定时刷新进程
 
 	AD5754_init();
 	

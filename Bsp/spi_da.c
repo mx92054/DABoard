@@ -91,37 +91,36 @@ void AD5754_Write(u8 *ptrTx, u8 *ptrRx)
 
   SYNC_L;
   SCLK_H;
-  delay();
-
+  __NOP();
+  
   for (j = 0; j < 3; j++)
   {
     data = *ptrTx;
     for (i = 0; i < 8; i++)
     {
-      if (data & 0x80 == 0)
-        SDIN_L;
+      if (data & 0x80)
+        SDIN_H; //数据信号为高
       else
-        SDIN_H;
-      delay();
-      SCLK_L;
-      delay();
+        SDIN_L;   //数据信号为低
+      __NOP();      //插入等待周期
+      SCLK_L;     //时钟信号低电平
+      data <<= 1; //数据左移1位
 
-      if (SDO == 0)
-        *ptrRx &= 0xFE;
-      else
+      if (SDO)
         *ptrRx |= 0x01;
-
-      data <<= 1;
+      else
+        *ptrRx &= 0xFE;
       *ptrRx <<= 1;
-      SCLK_H;
+
+      SCLK_H; //时钟信号高电平
     }
     ptrRx++;
     ptrTx++;
+    __NOP() ;
   }
 
-  delay();
+  SDIN_H;
   SYNC_H;
-  delay();
 }
 
 /*----------------------------------END OF FILE------------------------*/
