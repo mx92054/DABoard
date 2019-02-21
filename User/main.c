@@ -56,7 +56,7 @@ int main(void)
 			DATx[0] = nChn;
 			DATx[1] = (wReg[DA_REG_ADR + nChn] & 0xFF00) >> 8;
 			DATx[2] = wReg[DA_REG_ADR + nChn] & 0x00FF;
-			AD5754_Write(DATx, DARx);
+			//AD5754_Write(DATx, DARx);
 			WriteToAD5754RViaSpi(0x00, nChn, wReg[DA_REG_ADR + nChn]);
 			nChn = (nChn + 1) % 4;
 		}
