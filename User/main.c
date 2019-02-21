@@ -14,6 +14,7 @@ int main(void)
 {
 	u8 nChn = 0;
 	u32 tick, oldtick = 0;
+	short daval[4] = {0, 0, 0, 0};
 
 	SysTick_Init();
 	InternalFlashRead(wReg, 200);
@@ -25,12 +26,17 @@ int main(void)
 
 	SetTimer(1, 500);  //喂狗服务程序定时器
 	SetTimer(2, 1000); //参数定时保存进程
-	SetTimer(3, 200);  //DA口定时刷新进程
+	SetTimer(3, 100);  //DA口定时刷新进程
 
 	AD5754_init();
 
 	IWDG_Configuration();
 	LED1_OFF;
+
+	wReg[0] = 0x8000;
+	wReg[1] = 0x8000;
+	wReg[2] = 0x8000;
+	wReg[3] = 0x8000;
 
 	while (1)
 	{
@@ -51,7 +57,11 @@ int main(void)
 
 		if (GetTimer(3)) //DA输出
 		{
-			WriteToAD5754RViaSpi(0x00, nChn, wReg[nChn]);
+			if (daval[nChn] != wReg[nChn])
+			{
+				WriteToAD5754RViaSpi(0x00, nChn, wReg[nChn]);
+				daval[nChn] = wReg[nChn];
+			}
 			tick = GetCurTick();
 			nChn = (nChn + 1) % 4;
 			wReg[4] = tick - oldtick;
