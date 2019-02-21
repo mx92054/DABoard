@@ -42,9 +42,6 @@ static void AD5754_GPIO_Init(void)
  ********************************************************************************/
 void AD5754_init(void)
 {
-  u8 DATx[3];
-  u8 DARx[3];
-
   AD5754_GPIO_Init();
 
   delayus();
@@ -59,6 +56,11 @@ void AD5754_init(void)
   WriteToAD5754RViaSpi(0x00, 0x04, 0x0000);
 }
 
+static void delay(int n)
+{
+  while (n--)
+    ;
+}
 /********************************************************************************
  *	@brief	写命令到AD5754
  *	@param	nCmd: 命令号
@@ -100,7 +102,7 @@ void WriteToAD5754RViaSpi(u8 uCmd, u8 uChn, u16 uVal)
   }
 
   // SPI ends
-  delay(4); 
+  delay(4);
   SYNC_H;
   delay(10);
 }

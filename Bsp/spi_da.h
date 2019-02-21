@@ -49,7 +49,6 @@
 
 //-------------Fucntion define---------------------------------------------
 void AD5754_init(void) ;
-void AD5754_Write(u8 *ptrTx, u8 *ptrRx);
 void WriteToAD5754RViaSpi(u8 uCmd, u8 uChn, u16 uVal) ;
 
 #endif 

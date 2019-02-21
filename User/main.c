@@ -9,13 +9,11 @@
 
 #include "modbus_svr.h"
 
-#define DA_REG_ADR 110
-
 //--------------------------------------------------------------------------------
 int main(void)
 {
-	u8 DATx[3], DARx[3];
 	u8 nChn = 0;
+	u32 tick, oldtick = 0;
 
 	SysTick_Init();
 	InternalFlashRead(wReg, 200);
@@ -53,12 +51,11 @@ int main(void)
 
 		if (GetTimer(3)) //DA输出
 		{
-			DATx[0] = nChn;
-			DATx[1] = (wReg[DA_REG_ADR + nChn] & 0xFF00) >> 8;
-			DATx[2] = wReg[DA_REG_ADR + nChn] & 0x00FF;
-			//AD5754_Write(DATx, DARx);
-			WriteToAD5754RViaSpi(0x00, nChn, wReg[DA_REG_ADR + nChn]);
+			WriteToAD5754RViaSpi(0x00, nChn, wReg[nChn]);
+			tick = GetCurTick();
 			nChn = (nChn + 1) % 4;
+			wReg[4] = tick - oldtick;
+			oldtick = tick;
 		}
 	}
 }
