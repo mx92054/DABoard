@@ -25,3 +25,12 @@ AD控制板：
     SDO     PB15
     Serial Data Output. Used to clock data from the serial register in daisy-chain or readback mode. Data is
     clocked out on the rising edge of SCLK and is valid on the falling edge of SCLK.
+---------------------------------------------------------------------------------------------------------------
+0,1#通道输出设定0-0xFFFF对应-10V - +10V
+1,2#通道输出设定0-0xFFFF对应-10V - +10V
+2,3#通道输出设定0-0xFFFF对应-10V - +10V
+3,4#通道输出设定0-0xFFFF对应-10V - +10V
+
+100,站地址
+101,通信波特率
+102,启动次数
