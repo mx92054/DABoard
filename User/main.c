@@ -14,10 +14,11 @@ int main(void)
 {
 	u8 nChn = 0;
 	u32 tick, oldtick = 0;
-	short daval[4] = {0, 0, 0, 0};
+	short daval[4] = {-1, -1, -1, -1};
+	short setting, da_value;
 
 	SysTick_Init();
-	InternalFlashRead(wReg, 200);
+//	InternalFlashRead(wReg, 200);
 	BOOTNUM++;
 	bSaved = 1;
 
@@ -33,10 +34,10 @@ int main(void)
 	IWDG_Configuration();
 	LED1_OFF;
 
-	wReg[0] = 0x8000;
-	wReg[1] = 0x8000;
-	wReg[2] = 0x8000;
-	wReg[3] = 0x8000;
+	wReg[10] = 0;
+	wReg[11] = 0;
+	wReg[12] = 0;
+	wReg[13] = 0;
 
 	while (1)
 	{
@@ -49,22 +50,30 @@ int main(void)
 			IWDG_Feed();
 		}
 
-		if (GetTimer(2) && bSaved)
-		{
-			InternalFlashWrite(wReg, 200);
-			bSaved = 0;
-		}
+	if (GetTimer(2) && bSaved)
+	{
+		InternalFlashWrite(wReg, 200);
+		bSaved = 0;
+	}
 
 		if (GetTimer(3)) //DA输出
 		{
-			if (daval[nChn] != wReg[nChn])
+			if (daval[nChn] != wReg[10 + nChn])
 			{
-				WriteToAD5754RViaSpi(0x00, nChn, wReg[nChn]);
-				daval[nChn] = wReg[nChn];
+				setting = wReg[10 + nChn];
+				if (setting > 100 && setting < -100)
+					setting = 0;
+				
+				da_value = setting*32768/100 + 32768;
+				WriteToAD5754RViaSpi(0x00, nChn, da_value);
+				
+				daval[nChn] = setting;				
+				wReg[nChn] = setting;
+				wReg[4 + nChn] = da_value;
 			}
 			tick = GetCurTick();
 			nChn = (nChn + 1) % 4;
-			wReg[4] = tick - oldtick;
+			wReg[8] = tick - oldtick;
 			oldtick = tick;
 		}
 	}
