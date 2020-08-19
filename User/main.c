@@ -18,8 +18,6 @@ int main(void)
 	short setting, da_value;
 
 	SysTick_Init();
-//	InternalFlashRead(wReg, 200);
-	BOOTNUM++;
 	bSaved = 1;
 
 	LED_GPIO_Config();
@@ -28,6 +26,7 @@ int main(void)
 	SetTimer(1, 500);  //喂狗服务程序定时器
 	SetTimer(2, 1000); //参数定时保存进程
 	SetTimer(3, 100);  //DA口定时刷新进程
+	SetTimer(4, 100);  //喂狗服务程序定时器
 
 	AD5754_init();
 
@@ -44,17 +43,33 @@ int main(void)
 		Modbus_task();
 
 		//------------------------------------------------------------------
-		if (GetTimer(1))
+		if ( nCommCounter > 2) 
 		{
-			LED1_TOGGLE;
-			IWDG_Feed();
+			if (GetTimer(1))
+			{
+				LED1_TOGGLE;
+				IWDG_Feed();
+			}
 		}
-
-	if (GetTimer(2) && bSaved)
-	{
-		InternalFlashWrite(wReg, 200);
-		bSaved = 0;
-	}
+		else {
+			if (GetTimer(4))
+			{
+				LED1_TOGGLE;
+				IWDG_Feed();
+			}			
+		}
+		
+		if ( GetTimer(2) )		//检测通信是否正常
+		{
+			nCommCounter ++ ;
+			if (nCommCounter > 5)
+			{
+				wReg[10] = 0;
+				wReg[11] = 0;
+				wReg[12] = 0;
+				wReg[13] = 0 ;
+			}			
+		}
 
 		if (GetTimer(3)) //DA输出
 		{

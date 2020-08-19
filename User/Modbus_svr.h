@@ -64,6 +64,7 @@
 extern short wReg[];
 extern short coils[];
 extern u8 bSaved;
+extern int nCommCounter;
 
 //------------------Function Define ----------------------------------
 void Modbus_init(void);

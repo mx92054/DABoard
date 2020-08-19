@@ -8,6 +8,7 @@
 short wReg[200];
 short coils[200];
 u8 bSaved = 0;
+int nCommCounter = 0;
 
 static u8 buffer[512]; //缓冲池
 static u8 *tsk_buf;	//处理程序缓冲
@@ -148,8 +149,11 @@ void Modbus_task(void)
 			err = Modbus_Procotol_Chain(); //协议解析
 			if (err)					   //协议协议错误
 				Error_response(err);
-			else //协议解释正确
+			else //协议解释正确  
+			{
 				Normal_response();
+				nCommCounter = 0 ;
+			}
 		}
 		nMBInterval = 0;
 	}
